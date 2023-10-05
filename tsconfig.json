@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Language and Environment */
+    "target": "es2022", 
+    "lib": ["dom", "es2022"],
+
+    /* Modules */
+    "module": "nodenext",
+    "rootDir": "./src",
+    "moduleResolution": "nodenext",
+
+    /* Emit */
+    "outDir": "./lib",
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  }
+}

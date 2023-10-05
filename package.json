@@ -1,0 +1,40 @@
+{
+  "name": "@hypothesis/frontend-testing",
+  "version": "1.0.0",
+  "description": "Frontend testing utilities for Hypothesis projects",
+  "type": "module",
+  "main": "lib/index.js",
+  "repository": "https://github.com/hypothesis/frontend-testing",
+  "author": "Hypothesis Developers <eng@list.hypothes.is>",
+  "license": "BSD-2-Clause",
+  "packageManager": "yarn@3.6.4",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axe-core": "^4.8.2",
+    "enzyme": "^3.11.0",
+    "preact": "^10.18.1"
+  },
+  "files": [
+    "lib/**/*.js"
+  ],
+  "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "importOrder": [
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "checkformatting": "prettier --check src/**/*.ts",
+    "format": "prettier --list-different -w src/**/*.ts"
+  }
+}
