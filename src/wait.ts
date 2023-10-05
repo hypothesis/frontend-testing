@@ -39,7 +39,7 @@ function resolveTimeout(val: TimeoutSpec): TestTimeout {
 /**
  * Wait for a condition to evaluate to a truthy value.
  *
- * @return result of the `condition` function
+ * @return The result of the first call to `condition` which returns non-null
  */
 export async function waitFor<T>(
   condition: () => T,
