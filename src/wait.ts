@@ -74,7 +74,7 @@ export async function waitFor<T>(
 
       if (now - start > failTimeout) {
         clearTimeout(timer);
-        reject(new Error(`waitFor(${what}) failed after ${timeout} ms`));
+        reject(new Error(`waitFor(${what}) failed after ${failTimeout} ms`));
       }
     });
   });
