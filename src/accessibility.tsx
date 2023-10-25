@@ -20,8 +20,12 @@ async function testScenario(elementOrWrapper: VNode | ReactWrapper) {
 
   let wrapper;
   if (elementOrWrapper instanceof ReactWrapper) {
-    wrapper = elementOrWrapper;
-    container.appendChild(elementOrWrapper.getDOMNode());
+    // Add a div around the wrapper's elements, in case the first element is a
+    // fragment.
+    // This ensures all children are returned when calling wrapper.getDOMNode().
+    // See https://github.com/hypothesis/client/issues/5671
+    wrapper = mount(<div>{elementOrWrapper.getElements()}</div>);
+    container.appendChild(wrapper.getDOMNode());
   } else {
     wrapper = mount(elementOrWrapper, { attachTo: container });
   }

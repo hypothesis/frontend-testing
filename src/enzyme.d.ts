@@ -2,12 +2,19 @@
 // `@types/enzyme` because that brings in all the React types.
 
 declare module 'enzyme' {
+  import type { PreactElement } from 'preact';
+
   export class ReactWrapper {
     getDOMNode(): HTMLElement;
+    getElements(): PreactElement[];
   }
+
+  type MountOptions = {
+    attachTo: HTMLElement;
+  };
 
   export function mount(
     elementOrWrapper: VNode | ReactWrapper,
-    { attachTo: HTMLElement },
+    options?: MountOptions,
   );
 }
