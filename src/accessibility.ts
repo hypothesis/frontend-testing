@@ -10,6 +10,12 @@ export type Scenario = {
   /**
    * A function that returns the rendered output to test, or an Enzyme wrapper
    * created using Enzyme's `mount` function.
+   *
+   * Returning a VNode is preferred. An Enzyme wrapper for a component with a
+   * top-level Fragment will result in the test being run for the first DOM
+   * child node only.
+   * Use the Enzyme wrapper only if really needed, and consider wrapping your
+   * component with a `<div />` in that case.
    */
   content: () => VNode | ReactWrapper;
 };

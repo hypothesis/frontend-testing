@@ -13,6 +13,7 @@
 
     /* Emit */
     "outDir": "./lib",
+    "declaration": true,
 
     /* Interop Constraints */
     "esModuleInterop": true,
