@@ -86,7 +86,7 @@ export function checkAccessibility(
 
       const violations = await testScenario(elementOrWrapper);
       for (const violation of violations) {
-        console.error('axe-core violation', violation);
+        console.error('axe-core violation', JSON.stringify(violation, null, 2));
       }
       if (violations.length > 0) {
         throw new Error(`Scenario "${name}" has accessibility violations`);
