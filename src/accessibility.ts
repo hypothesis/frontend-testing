@@ -1,4 +1,5 @@
 import { run } from 'axe-core';
+import type { Result } from 'axe-core';
 import { ReactWrapper, mount } from 'enzyme';
 import { isValidElement } from 'preact';
 import type { VNode } from 'preact';
@@ -18,6 +19,14 @@ export type Scenario = {
    * component with a `<div />` in that case.
    */
   content: () => VNode | ReactWrapper;
+
+  /**
+   * This callback will be applied to all found accessibility violations,
+   * allowing you to ignore those that are not relevant for your test.
+   * A use case for this is any combination that axe-core considers invalid
+   * because certain screen readers won't play well, but their use is marginal.
+   */
+  shouldIgnoreViolation?: (violation: Result) => boolean;
 };
 
 async function testScenario(elementOrWrapper: VNode | ReactWrapper) {
@@ -66,7 +75,9 @@ export function checkAccessibility(
   scenarios: Scenario | Scenario[],
 ): () => Promise<void> {
   return async () => {
-    for (const { name = 'default', content } of asArray(scenarios)) {
+    for (const { name = 'default', content, shouldIgnoreViolation } of asArray(
+      scenarios,
+    )) {
       if (typeof content !== 'function') {
         throw new Error(
           `"content" key for accessibility scenario "${name}" should be a function but is a ${typeof content}`,
@@ -85,10 +96,13 @@ export function checkAccessibility(
       }
 
       const violations = await testScenario(elementOrWrapper);
-      for (const violation of violations) {
+      const filteredViolations = shouldIgnoreViolation
+        ? violations.filter(v => !shouldIgnoreViolation(v))
+        : violations;
+      for (const violation of filteredViolations) {
         console.error('axe-core violation', JSON.stringify(violation, null, 2));
       }
-      if (violations.length > 0) {
+      if (filteredViolations.length > 0) {
         throw new Error(`Scenario "${name}" has accessibility violations`);
       }
     }
