@@ -20,7 +20,8 @@
     "preact": "^10.18.1"
   },
   "files": [
-    "lib/**/*.js"
+    "lib/**/*.js",
+    "lib/**/*.d.ts"
   ],
   "prettier": {
     "arrowParens": "avoid",
