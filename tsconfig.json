@@ -23,6 +23,10 @@
     "strict": true,
 
     /* Completeness */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "paths": {
+      "enzyme": ["./src/enzyme.d.ts"]
+    }
   }
 }
