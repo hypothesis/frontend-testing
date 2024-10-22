@@ -29,7 +29,10 @@ export type Scenario = {
   shouldIgnoreViolation?: (violation: Result) => boolean;
 };
 
-async function testScenario(elementOrWrapper: VNode | ReactWrapper) {
+async function testScenario(
+  elementOrWrapper: VNode | ReactWrapper,
+  { shouldIgnoreViolation }: Pick<Scenario, 'shouldIgnoreViolation'>,
+) {
   const container = document.createElement('div');
   document.body.appendChild(container);
 
@@ -52,10 +55,16 @@ async function testScenario(elementOrWrapper: VNode | ReactWrapper) {
     // or "inapplicable" (no relevant HTML elements found).
     resultTypes: ['violations'],
   });
+
+  let violations = results.violations;
+  if (shouldIgnoreViolation) {
+    violations = violations.filter(v => !shouldIgnoreViolation(v));
+  }
+
   wrapper.unmount();
   container.remove();
 
-  return results.violations;
+  return violations;
 }
 
 function asArray<T>(itemOrList: T | T[]): T[] {
@@ -95,14 +104,13 @@ export function checkAccessibility(
         );
       }
 
-      const violations = await testScenario(elementOrWrapper);
-      const filteredViolations = shouldIgnoreViolation
-        ? violations.filter(v => !shouldIgnoreViolation(v))
-        : violations;
-      for (const violation of filteredViolations) {
+      const violations = await testScenario(elementOrWrapper, {
+        shouldIgnoreViolation,
+      });
+      for (const violation of violations) {
         console.error('axe-core violation', JSON.stringify(violation, null, 2));
       }
-      if (filteredViolations.length > 0) {
+      if (violations.length > 0) {
         throw new Error(`Scenario "${name}" has accessibility violations`);
       }
     }
