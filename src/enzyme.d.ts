@@ -4,10 +4,11 @@
 declare module 'enzyme' {
   export class ReactWrapper {
     getDOMNode(): HTMLElement;
+    unmount(): void;
   }
 
   export function mount(
     elementOrWrapper: VNode | ReactWrapper,
-    { attachTo: HTMLElement },
-  );
+    options?: { attachTo?: HTMLElement },
+  ): ReactWrapper;
 }
