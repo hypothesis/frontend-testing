@@ -25,6 +25,9 @@ export function mount(jsx: VNode, { connected = false }: MountOptions = {}) {
     const container = document.createElement('div');
     container.setAttribute('data-enzyme-container', '');
     containers.push(container);
+
+    document.body.append(container);
+
     wrapper = enzyme.mount(jsx, { attachTo: container });
   } else {
     wrapper = enzyme.mount(jsx);
