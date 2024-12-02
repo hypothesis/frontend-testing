@@ -11,6 +11,13 @@ export type MountOptions = {
    * attached to `document.body`.
    */
   connected?: boolean;
+
+  /**
+   * When `connected` is true, allows to customize the container to which the
+   * wrapper is connected to.
+   * Useful to add custom styles and such.
+   */
+  prepareContainer?: (container: HTMLElement) => void;
 };
 
 /**
@@ -19,13 +26,17 @@ export type MountOptions = {
  * The component can be unmounted by calling `wrapper.unmount()` or by calling
  * {@link unmountAll} at the end of the test.
  */
-export function mount(jsx: VNode, { connected = false }: MountOptions = {}) {
+export function mount(
+  jsx: VNode,
+  { connected = false, prepareContainer }: MountOptions = {},
+) {
   let wrapper;
   if (connected) {
     const container = document.createElement('div');
     container.setAttribute('data-enzyme-container', '');
     containers.push(container);
 
+    prepareContainer?.(container);
     document.body.append(container);
 
     wrapper = enzyme.mount(jsx, { attachTo: container });
