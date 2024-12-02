@@ -13,8 +13,8 @@ export type MountOptions = {
   connected?: boolean;
 
   /**
-   * When `connected` is true, allows to customize the container to which the
-   * wrapper is connected to.
+   * When `connected` is true, allows customizing the DOM container in which the
+   * component is mounted.
    * Useful to add custom styles and such.
    */
   prepareContainer?: (container: HTMLElement) => void;
