@@ -34,10 +34,16 @@ export type ComponentWrapper<P = {}, S = {}> = {
   closest(selector: string): ComponentWrapper<JSX.HTMLAttributes, any>;
 
   exists(selector?: EnzymeSelector): boolean;
+  filterWhere(
+    predicate: (wrapper: ComponentWrapper) => boolean,
+  ): ComponentWrapper;
 
   find<P2>(component: FunctionComponent<P2>): ComponentWrapper<P2, any>;
   find(selector: string): ComponentWrapper<JSX.HTMLAttributes, any>;
 
+  findWhere(
+    predicate: (wrapper: ComponentWrapper<any, any>) => boolean,
+  ): ComponentWrapper<any, any>;
   first(): ComponentWrapper<P, S>;
   forEach(
     fn: (wrapper: ComponentWrapper<P, S>, index: number) => any,
