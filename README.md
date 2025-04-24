@@ -48,3 +48,40 @@ describe('MyWidget', () => {
   });
 });
 ```
+
+## Vitest
+
+This package has an optional peer dependency on `vitest`. Any vitest-specific
+utility is exposed in a separate `@hypothesis/frontend-testing/vitest` entry
+point.
+
+### Summary reporter
+
+Vitest's default reporter prints a real-time summary indicating the test
+execution progress, but also a per-file list of tests at the end of every test
+file.
+
+This package provides a `SummaryReporter` that skips the per-file output, but
+still prints the real-time summary and details for any failed test.
+
+```js
+// vitest.config.js
+
+import { SummaryReporter } from '@hypothesis/frontend-testing/vitest';
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    globals: true,
+    browser: {
+      provider: 'playwright',
+      // ...
+    },
+
+    // Set the summary reporter here. You can define more reporters if desired
+    reporters: [new SummaryReporter()],
+
+    // Other config...
+  },
+});
+```
