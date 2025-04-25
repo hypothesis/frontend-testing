@@ -9,15 +9,34 @@
   "author": "Hypothesis Developers <eng@list.hypothes.is>",
   "license": "BSD-2-Clause",
   "packageManager": "yarn@3.6.4",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./vitest": {
+      "import": "./lib/vitest.js",
+      "types": "./lib/vitest.d.ts"
+    }
+  },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
     "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^3.1.2"
   },
   "dependencies": {
     "axe-core": "^4.8.2",
     "enzyme": "^3.11.0",
     "preact": "^10.18.1"
+  },
+  "peerDependencies": {
+    "vitest": "^3.1.2"
+  },
+  "peerDependenciesMeta": {
+    "vitest": {
+      "optional": true
+    }
   },
   "files": [
     "lib/**/*.js",
