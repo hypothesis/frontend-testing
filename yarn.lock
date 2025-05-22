@@ -299,9 +299,6 @@ __metadata:
     vitest: ^3.1.2
   peerDependencies:
     vitest: ^3.1.2
-  peerDependenciesMeta:
-    vitest:
-      optional: true
   languageName: unknown
   linkType: soft
 

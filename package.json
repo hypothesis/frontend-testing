@@ -33,11 +33,6 @@
   "peerDependencies": {
     "vitest": "^3.1.2"
   },
-  "peerDependenciesMeta": {
-    "vitest": {
-      "optional": true
-    }
-  },
   "files": [
     "lib/**/*.js",
     "lib/**/*.d.ts"
