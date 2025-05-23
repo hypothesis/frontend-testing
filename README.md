@@ -99,7 +99,7 @@ This library provides these options for convenience, so that you don't need to
 define them everywhere.
 
 ```js
-import { vitestCoverageOptions } from '@hypothesis/frontend-testing';
+import { vitestCoverageOptions } from '@hypothesis/frontend-testing/vitest';
 import { babel } from '@rollup/plugin-babel';
 
 const babelRollupPlugin = babel({
@@ -132,7 +132,7 @@ still prints the real-time summary and details for any failed test.
 
 ```js
 // vitest.config.js
-import { SummaryReporter } from '@hypothesis/frontend-testing';
+import { SummaryReporter } from '@hypothesis/frontend-testing/vitest';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
