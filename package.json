@@ -1,6 +1,6 @@
 {
   "name": "@hypothesis/frontend-testing",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Frontend testing utilities for Hypothesis projects",
   "type": "module",
   "main": "./lib/index.js",
