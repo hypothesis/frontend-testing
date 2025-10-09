@@ -5,7 +5,10 @@
   "type": "module",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "repository": "https://github.com/hypothesis/frontend-testing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypothesis/frontend-testing.git"
+  },
   "author": "Hypothesis Developers <eng@list.hypothes.is>",
   "license": "BSD-2-Clause",
   "packageManager": "yarn@3.6.4",
